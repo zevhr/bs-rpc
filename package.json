@@ -1,0 +1,17 @@
+{
+  "name": "bs-rpc",
+  "version": "1.0.0",
+  "description": "A simple Beat Saber RPC using kOFReadie's BSDataPuller",
+  "main": "index.js",
+  "scripts": {
+    "start": "npm i && node index.js"
+  },
+  "keywords": [],
+  "author": "Awex",
+  "license": "",
+  "dependencies": {
+    "chalk": "^4.1.2",
+    "discord-rpc": "github:discordjs/rpc",
+    "ws": "^8.2.2"
+  }
+}
