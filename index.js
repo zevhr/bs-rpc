@@ -22,22 +22,23 @@ rpc.on("ready", () => {
 
 socket.onmessage = function(event) {
     var msg = JSON.parse(event.data)
+    console.log(msg)
 
-    if(msg.InLevel === false || msg.SongName === null) {
+    if(msg.InLevel === false & msg.SongName === null) {
         presence.details = `Just opened!`
         presence.state = `In Lobby`
 
         rpc.setActivity(presence)
     } else if (msg.InLevel === true && msg.LevelPaused === false) {
         presence.details = `Playing ${msg.SongName}`
-        presence.state = `Mapped by ${msg.Mapper}`
+        presence.state = `Difficulty ${msg.Difficulty}`
         presence.smallImageKey = `play`
         presence.smallImageText = `Playing`
 
         rpc.setActivity(presence)
     } else if(msg.InLevel === true && msg.LevelPaused === true) {
         presence.details = `Playing ${msg.SongName}`
-        presence.state = `Mapped by ${msg.Mapper}`
+        presence.state = `Difficulty ${msg.Difficulty}`
         presence.smallImageKey = "pausedd"
         presence.smallImageText = `Paused`
 
@@ -58,7 +59,7 @@ socket.onerror = function(event) {
         console.log(chalk.redBright.bold(`Websocket not active on ws://0.0.0.0:2946!\nYou need to start Beat Saber with DataPuller installed (along with its dependencies) for this RPC to work!`))
         process.exit(1)
     } else {
-        console.log(chalk.redBright.bold(`Unhandled error! If this continues happening, create a GitHub issue on bs-rpc!\n`, error))
+        console.log(chalk.redBright.bold(`Unhandled error! If this continues happening, create a GitHub issue on bs-rpc!\n`, JSON.stringify(error)))
         process.exit(1);
     }
 }
